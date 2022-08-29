@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 
- int length (char *);
+int length (char *);
 
 char *multiply (char *, char *);
 
@@ -25,51 +25,51 @@ int
 main ()
 {
 
-char a[] =
-    "3141592653589793238462643383279502884197169399375105820974944592";
+    char a[] =
+        "3141592653589793238462643383279502884197169399375105820974944592";
 
-char b[] =
-    "2718281828459045235360287471352662497757247093699959574966967627";
-
-
-char *c = karamult (a, b);
+    char b[] =
+        "2718281828459045235360287471352662497757247093699959574966967627";
 
 
-int d = length (c);
+    char *c = karamult (a, b);
 
-printf ("%s  %d", c, d);
 
-FILE * F = NULL;
+    int d = length (c);
 
-F = fopen ("test_1.txt", "w");
+    printf ("%s  %d", c, d);
 
-fprintf (F, "%s", c);
+    FILE * F = NULL;
 
-fclose (F);
+    F = fopen ("test_1.txt", "w");
 
-free (F);
+    fprintf (F, "%s", c);
 
-free (c);
+    fclose (F);
 
-return 0;
+    free (F);
+
+    free (c);
+
+    return 0;
 
 }
 
 
 
 // Length of array
-  int
+int
 length (char *c)
 {
 
-int l = 0;
+    int l = 0;
 
-while ((*c++) != '\0')
+    while ((*c++) != '\0')
 
-l++;
+        l++;
 
 
-return l;
+    return l;
 
 }
 
@@ -82,33 +82,33 @@ multiply (char *a, char *b)
 
 {
 
-char *f = (char *) calloc ((3), sizeof (char));
+    char *f = (char *) calloc ((3), sizeof (char));
 
-if (f == NULL)
+    if (f == NULL)
 
     {
 
-printf ("error in multiply\n");
+        printf ("error in multiply\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-int e = (*a - '0') * (*b - '0');
-
-f[0] = (e / 10) + '0';
-
-f[1] = (e % 10) + '0';
-
-f[2] = '\0';
+    }
 
 
-removezero (f);
+    int e = (*a - '0') * (*b - '0');
+
+    f[0] = (e / 10) + '0';
+
+    f[1] = (e % 10) + '0';
+
+    f[2] = '\0';
 
 
-return f;
+    removezero (f);
+
+
+    return f;
 
 }
 
@@ -120,79 +120,79 @@ char *
 add (char *a, char *b, int n)
 {
 
-char *f = NULL;
+    char *f = NULL;
 
-f = (char *) calloc ((n + 2), sizeof (char));
+    f = (char *) calloc ((n + 2), sizeof (char));
 
-if (f == NULL)
-
-    {
-
-printf ("error in add\n");
-
-exit (EXIT_FAILURE);
-
-
-}
-
-
-int car = 0;
-
-for (int i = n; i > 0; i--)
+    if (f == NULL)
 
     {
 
-int e1 = (a[i - 1] - '0') + (b[i - 1] - '0') + car;
+        printf ("error in add\n");
 
-if (e1 - 10 >= 0)
-
-car = 1;
-
-      else
-
-car = 0;
-
-f[i] = (e1 % 10) + '0';
+        exit (EXIT_FAILURE);
 
 
-}
+    }
 
 
-if (car)
+    int car = 0;
+
+    for (int i = n; i > 0; i--)
 
     {
 
-f[0] = '1';
+        int e1 = (a[i - 1] - '0') + (b[i - 1] - '0') + car;
 
-f[n + 1] = '\0';
+        if (e1 - 10 >= 0)
 
-}
+            car = 1;
 
-  else
+        else
+
+            car = 0;
+
+        f[i] = (e1 % 10) + '0';
+
+
+    }
+
+
+    if (car)
+
+    {
+
+        f[0] = '1';
+
+        f[n + 1] = '\0';
+
+    }
+
+    else
 
 
     {
 
-f[0] = '0';
+        f[0] = '0';
 
-f[n + 1] = '\0';
+        f[n + 1] = '\0';
 
-char *g = (char *) calloc ((n + 1), sizeof (char));
+        char *g = (char *) calloc ((n + 1), sizeof (char));
 
-for (int i = 0; i < n + 1; i++)
+        for (int i = 0; i < n + 1; i++)
 
-g[i] = f[i + 1];
+            g[i] = f[i + 1];
 
-free (f);
+        free (f);
 
-f = NULL;
+        f = NULL;
 
-return g;
+        return g;
 
-}
+    }
 
 
-return f;
+    return f;
 
 
 }
@@ -205,56 +205,56 @@ char *
 sub (char *a, char *b, int n)
 {
 
-char *f = (char *) calloc ((n + 1), sizeof (char));
+    char *f = (char *) calloc ((n + 1), sizeof (char));
 
-if (f == NULL)
-
-    {
-
-printf ("error in sub\n");
-
-exit (EXIT_FAILURE);
-
-
-}
-
-
-int car = 0;
-
-for (int i = n - 1; i >= 0; i--)
+    if (f == NULL)
 
     {
 
-int e1 = (a[i] - '0') - (b[i] - '0') - car;
+        printf ("error in sub\n");
 
-if (e1 < 0)
-
-	{
-
-car = 1;
-
-e1 += 10;
-
-f[i] = e1 + '0';
-
-}
-
-      else
-
-	{
-
-f[i] = e1 + '0';
-
-car = 0;
-
-}
-
-}
+        exit (EXIT_FAILURE);
 
 
-f[n] = '\0';
+    }
 
-return f;
+
+    int car = 0;
+
+    for (int i = n - 1; i >= 0; i--)
+
+    {
+
+        int e1 = (a[i] - '0') - (b[i] - '0') - car;
+
+        if (e1 < 0)
+
+        {
+
+            car = 1;
+
+            e1 += 10;
+
+            f[i] = e1 + '0';
+
+        }
+
+        else
+
+        {
+
+            f[i] = e1 + '0';
+
+            car = 0;
+
+        }
+
+    }
+
+
+    f[n] = '\0';
+
+    return f;
 
 }
 
@@ -267,41 +267,41 @@ addzerosl (char *a, int a1, int b)
 
 {
 
-int r = b - a1;
+    int r = b - a1;
 
-char *f = (char *) calloc ((b + 1), sizeof (char));
+    char *f = (char *) calloc ((b + 1), sizeof (char));
 
-if (f == NULL)
-
-    {
-
-printf ("error in addzerosl\n");
-
-exit (EXIT_FAILURE);
-
-
-}
-
-
-for (int i = 0; i < a1; i++)
+    if (f == NULL)
 
     {
 
-f[b - 1 - i] = a[a1 - 1 - i];
+        printf ("error in addzerosl\n");
 
-}
+        exit (EXIT_FAILURE);
 
-for (int i = 0; i < r; i++)
+
+    }
+
+
+    for (int i = 0; i < a1; i++)
 
     {
 
-f[i] = '0';
+        f[b - 1 - i] = a[a1 - 1 - i];
 
-}
+    }
 
-f[b] = '\0';
+    for (int i = 0; i < r; i++)
 
-return f;
+    {
+
+        f[i] = '0';
+
+    }
+
+    f[b] = '\0';
+
+    return f;
 
 }
 
@@ -312,39 +312,39 @@ reallocaddzerosl (char **a, int a1, int b)
 
 {
 
-int r = b - a1;
+    int r = b - a1;
 
-*a = (char *) realloc ((*a), (b + 1) * sizeof (char));
+    *a = (char *) realloc ((*a), (b + 1) * sizeof (char));
 
-if (*a == NULL)
-
-    {
-
-printf ("error in reallocaddzerosl\n");
-
-exit (EXIT_FAILURE);
-
-
-}
-
-
-for (int i = 0; i < a1; i++)
+    if (*a == NULL)
 
     {
 
-(*a)[b - 1 - i] = (*a)[a1 - 1 - i];
+        printf ("error in reallocaddzerosl\n");
 
-}
+        exit (EXIT_FAILURE);
 
-for (int i = 0; i < r; i++)
+
+    }
+
+
+    for (int i = 0; i < a1; i++)
 
     {
 
-(*a)[i] = '0';
+        (*a)[b - 1 - i] = (*a)[a1 - 1 - i];
 
-}
+    }
 
-(*a)[b] = '\0';
+    for (int i = 0; i < r; i++)
+
+    {
+
+        (*a)[i] = '0';
+
+    }
+
+    (*a)[b] = '\0';
 
 }
 
@@ -355,53 +355,53 @@ void
 removezero (char *a)
 {
 
-int n = length (a);
+    int n = length (a);
 
-int i = 0;
+    int i = 0;
 
 
-if (a[0] != '0')
+    if (a[0] != '0')
 
-return;
+        return;
 
-  else
+    else
 
     {
 
-while (a[i] == '0' && a[i] != '\0')
+        while (a[i] == '0' && a[i] != '\0')
 
-i++;
+            i++;
 
-int j = 0;
+        int j = 0;
 
-if (i < n)
+        if (i < n)
 
-	{
+        {
 
-for (j = 0; j < (n - i); j++)
+            for (j = 0; j < (n - i); j++)
 
-	    {
+            {
 
-a[j] = a[i + j];
+                a[j] = a[i + j];
 
-}
+            }
 
 
-a[j] = '\0';
+            a[j] = '\0';
 
-}
+        }
 
-      else
+        else
 
-	{
+        {
 
-a[0] = '0';
+            a[0] = '0';
 
-a[1] = '\0';
+            a[1] = '\0';
 
-}
+        }
 
-}
+    }
 
 }
 
@@ -413,36 +413,36 @@ char *
 addzerosr (char *a, int c)
 {
 
-char *f = (char *) calloc ((length (a) + c + 1), sizeof (char));
+    char *f = (char *) calloc ((length (a) + c + 1), sizeof (char));
 
-if (a == NULL)
-
-    {
-
-printf ("error in addzerosr\n");
-
-exit (EXIT_FAILURE);
-
-
-}
-
-
-for (int i = 0; i < length (a); i++)
-
-f[i] = a[i];
-
-for (int i = length (a); i < (length (a) + c); i++)
+    if (a == NULL)
 
     {
 
-f[i] = '0';
+        printf ("error in addzerosr\n");
 
-}
-
-f[(length (a) + c)] = '\0';
+        exit (EXIT_FAILURE);
 
 
-return f;
+    }
+
+
+    for (int i = 0; i < length (a); i++)
+
+        f[i] = a[i];
+
+    for (int i = length (a); i < (length (a) + c); i++)
+
+    {
+
+        f[i] = '0';
+
+    }
+
+    f[(length (a) + c)] = '\0';
+
+
+    return f;
 
 }
 
@@ -454,448 +454,448 @@ char *
 karamult (char *a, char *b)
 {
 
-static int de = 0;
+    static int de = 0;
 
-int la = length (a);
+    int la = length (a);
 
-int lb = length (b);
+    int lb = length (b);
 
-char *ca = NULL;
+    char *ca = NULL;
 
-char *cb = NULL;
-
-
-int n = 0;
-
-char *f = NULL;
+    char *cb = NULL;
 
 
-if (la <= 1 && lb <= 1)
+    int n = 0;
 
-    {
-
-f = multiply (a, b);
-
-return f;
-
-}
+    char *f = NULL;
 
 
-if (la > lb)
+    if (la <= 1 && lb <= 1)
 
     {
 
-n = la;
+        f = multiply (a, b);
 
-cb = addzerosl (b, lb, la);
+        return f;
 
-ca = addzerosl (a, la, la);
+    }
 
-}
 
-  else if (la < lb)
-
-    {
-
-n = lb;
-
-ca = addzerosl (a, la, lb);
-
-cb = addzerosl (b, lb, lb);
-
-}
-
-  else
+    if (la > lb)
 
     {
 
-ca = addzerosl (a, la, la);
+        n = la;
 
-cb = addzerosl (b, lb, lb);
+        cb = addzerosl (b, lb, la);
 
-n = lb;
+        ca = addzerosl (a, la, la);
 
-}
+    }
 
-
-if (n % 2)
-
-    {
-
-reallocaddzerosl (&ca, n, n + 1);
-
-reallocaddzerosl (&cb, n, n + 1);
-
-n = n + 1;
-
-}
-
-
-char *a1 = (char *) calloc ((n / 2 + 1), sizeof (char));
-
-char *b1 = (char *) calloc ((n / 2 + 1), sizeof (char));
-
-char *c1 = (char *) calloc ((n / 2 + 1), sizeof (char));
-
-char *d1 = (char *) calloc ((n / 2 + 1), sizeof (char));
-
-if (a1 == NULL || b1 == NULL || c1 == NULL || d1 == NULL)
+    else if (la < lb)
 
     {
 
-printf ("error in a1\n");
+        n = lb;
 
-exit (EXIT_FAILURE);
+        ca = addzerosl (a, la, lb);
 
+        cb = addzerosl (b, lb, lb);
 
-}
+    }
 
-
-for (int i = 0; i < n / 2; i++)
-
-    {
-
-a1[i] = ca[i];
-
-b1[i] = ca[i + n / 2];
-
-c1[i] = cb[i];
-
-d1[i] = cb[i + n / 2];
-
-}
-
-a1[n / 2] = '\0';
-
-b1[n / 2] = '\0';
-
-c1[n / 2] = '\0';
-
-d1[n / 2] = '\0';
-
-free (ca);
-
-free (cb);
-
-ca = NULL;
-
-cb = NULL;
-
-
-char *apb = add (a1, b1, length (a1));
-
-if (apb == NULL)
+    else
 
     {
 
-printf ("error in apb\n");
+        ca = addzerosl (a, la, la);
 
-exit (EXIT_FAILURE);
+        cb = addzerosl (b, lb, lb);
 
+        n = lb;
 
-}
-
-
-char *cpb = add (c1, d1, length (c1));
-
-if (cpb == NULL)
-
-    {
-
-printf ("error in cpb\n");
-
-exit (EXIT_FAILURE);
+    }
 
 
-}
-
-
-char *ac = karamult (a1, c1);
-
-if (ac == NULL)
+    if (n % 2)
 
     {
 
-printf ("error in ac\n");
+        reallocaddzerosl (&ca, n, n + 1);
 
-exit (EXIT_FAILURE);
+        reallocaddzerosl (&cb, n, n + 1);
 
+        n = n + 1;
 
-}
-
-
-char *bd = karamult (b1, d1);
-
-if (bd == NULL)
-
-    {
-
-printf ("error in bd\n");
-
-exit (EXIT_FAILURE);
+    }
 
 
-}
+    char *a1 = (char *) calloc ((n / 2 + 1), sizeof (char));
 
+    char *b1 = (char *) calloc ((n / 2 + 1), sizeof (char));
 
-removezero (ac);
+    char *c1 = (char *) calloc ((n / 2 + 1), sizeof (char));
 
-removezero (bd);
+    char *d1 = (char *) calloc ((n / 2 + 1), sizeof (char));
 
-removezero (apb);
-
-removezero (cpb);
-
-
-free (a1);
-
-free (b1);
-
-free (c1);
-
-free (d1);
-
-a1 = NULL;
-
-b1 = NULL;
-
-c1 = NULL;
-
-d1 = NULL;
-
-char *sec = karamult (apb, cpb);
-
-if (sec == NULL)
+    if (a1 == NULL || b1 == NULL || c1 == NULL || d1 == NULL)
 
     {
 
-printf ("error in sec\n");
+        printf ("error in a1\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-removezero (sec);
+    }
 
-free (apb);
 
-free (cpb);
-
-apb = NULL;
-
-cpb = NULL;
-
-int lsec = length (sec);
-
-int lac = length (ac);
-
-if (lsec > lac)
-
-reallocaddzerosl (&ac, lac, lsec);
-
-  else if (lsec < lac)
-
-reallocaddzerosl (&sec, lsec, lac);
-
-lsec = length (sec);
-
-char *sec1 = sub (sec, ac, lsec);
-
-if (sec1 == NULL)
+    for (int i = 0; i < n / 2; i++)
 
     {
 
-printf ("error in sec1\n");
+        a1[i] = ca[i];
 
-exit (EXIT_FAILURE);
+        b1[i] = ca[i + n / 2];
 
+        c1[i] = cb[i];
 
-}
+        d1[i] = cb[i + n / 2];
 
+    }
 
-removezero (sec1);
+    a1[n / 2] = '\0';
 
-free (sec);
+    b1[n / 2] = '\0';
 
-sec = NULL;
+    c1[n / 2] = '\0';
 
-int lsec1 = length (sec1);
+    d1[n / 2] = '\0';
 
-int lbd = length (bd);
+    free (ca);
 
-if (lsec1 > lbd)
+    free (cb);
 
-reallocaddzerosl (&bd, lbd, lsec1);
+    ca = NULL;
 
-  else if (lsec1 < lbd)
-
-reallocaddzerosl (&sec1, lsec1, lbd);
-
-lsec1 = length (sec1);
-
-char *sec2 = sub (sec1, bd, lsec1);
-
-if (sec2 == NULL)
-
-    {
-
-printf ("error in sec2\n");
-
-exit (EXIT_FAILURE);
+    cb = NULL;
 
 
-}
+    char *apb = add (a1, b1, length (a1));
 
-
-removezero (sec2);
-
-free (sec1);
-
-
-sec1 = NULL;
-
-int i = 0;
-
-int j = 0;
-
-
-char *f1 = addzerosr (ac, n);
-
-if (f1 == NULL)
+    if (apb == NULL)
 
     {
 
-printf ("error in f1\n");
+        printf ("error in apb\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-free (ac);
+    }
 
-ac = NULL;
 
-removezero (f1);
+    char *cpb = add (c1, d1, length (c1));
 
-char *f2 = addzerosr (sec2, (n / 2));
-
-if (f2 == NULL)
+    if (cpb == NULL)
 
     {
 
-printf ("error in f2\n");
+        printf ("error in cpb\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-free (sec2);
+    }
 
 
-sec2 = NULL;
+    char *ac = karamult (a1, c1);
 
-removezero (f2);
-
-int lf1 = length (f1);
-
-int lf2 = length (f2);
-
-if (lf1 > lf2)
-
-reallocaddzerosl (&f2, lf2, lf1);
-
-  else if (lf1 < lf2)
-
-reallocaddzerosl (&f1, lf1, lf2);
-
-lf1 = length (f1);
-
-char *f3 = add (f1, f2, lf1);
-
-if (f3 == NULL)
+    if (ac == NULL)
 
     {
 
-printf ("error in f3\n");
+        printf ("error in ac\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-free (f1);
-
-free (f2);
+    }
 
 
-f1 = NULL;
+    char *bd = karamult (b1, d1);
 
-f2 = NULL;
-
-int lf3 = length (f3);
-
-removezero (f3);
-
-removezero (bd);
-
-lbd = length (bd);
-
-if (lf3 > lbd)
-
-reallocaddzerosl (&bd, lbd, lf3);
-
-  else if (lf3 < lbd)
-
-reallocaddzerosl (&f3, lf3, lbd);
-
-lf3 = length (f3);
-
-f = add (f3, bd, lf3);
-
-if (f == NULL)
+    if (bd == NULL)
 
     {
 
-printf ("error in f\n");
+        printf ("error in bd\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-removezero (f);
-
-free (f3);
+    }
 
 
-if (bd == NULL)
+    removezero (ac);
+
+    removezero (bd);
+
+    removezero (apb);
+
+    removezero (cpb);
+
+
+    free (a1);
+
+    free (b1);
+
+    free (c1);
+
+    free (d1);
+
+    a1 = NULL;
+
+    b1 = NULL;
+
+    c1 = NULL;
+
+    d1 = NULL;
+
+    char *sec = karamult (apb, cpb);
+
+    if (sec == NULL)
 
     {
 
-printf ("error in bd\n");
+        printf ("error in sec\n");
 
-exit (EXIT_FAILURE);
-
-
-}
+        exit (EXIT_FAILURE);
 
 
-free (bd);
+    }
 
 
-f3 = NULL;
+    removezero (sec);
 
-bd = NULL;
+    free (apb);
+
+    free (cpb);
+
+    apb = NULL;
+
+    cpb = NULL;
+
+    int lsec = length (sec);
+
+    int lac = length (ac);
+
+    if (lsec > lac)
+
+        reallocaddzerosl (&ac, lac, lsec);
+
+    else if (lsec < lac)
+
+        reallocaddzerosl (&sec, lsec, lac);
+
+    lsec = length (sec);
+
+    char *sec1 = sub (sec, ac, lsec);
+
+    if (sec1 == NULL)
+
+    {
+
+        printf ("error in sec1\n");
+
+        exit (EXIT_FAILURE);
 
 
-return f;
+    }
+
+
+    removezero (sec1);
+
+    free (sec);
+
+    sec = NULL;
+
+    int lsec1 = length (sec1);
+
+    int lbd = length (bd);
+
+    if (lsec1 > lbd)
+
+        reallocaddzerosl (&bd, lbd, lsec1);
+
+    else if (lsec1 < lbd)
+
+        reallocaddzerosl (&sec1, lsec1, lbd);
+
+    lsec1 = length (sec1);
+
+    char *sec2 = sub (sec1, bd, lsec1);
+
+    if (sec2 == NULL)
+
+    {
+
+        printf ("error in sec2\n");
+
+        exit (EXIT_FAILURE);
+
+
+    }
+
+
+    removezero (sec2);
+
+    free (sec1);
+
+
+    sec1 = NULL;
+
+    int i = 0;
+
+    int j = 0;
+
+
+    char *f1 = addzerosr (ac, n);
+
+    if (f1 == NULL)
+
+    {
+
+        printf ("error in f1\n");
+
+        exit (EXIT_FAILURE);
+
+
+    }
+
+
+    free (ac);
+
+    ac = NULL;
+
+    removezero (f1);
+
+    char *f2 = addzerosr (sec2, (n / 2));
+
+    if (f2 == NULL)
+
+    {
+
+        printf ("error in f2\n");
+
+        exit (EXIT_FAILURE);
+
+
+    }
+
+
+    free (sec2);
+
+
+    sec2 = NULL;
+
+    removezero (f2);
+
+    int lf1 = length (f1);
+
+    int lf2 = length (f2);
+
+    if (lf1 > lf2)
+
+        reallocaddzerosl (&f2, lf2, lf1);
+
+    else if (lf1 < lf2)
+
+        reallocaddzerosl (&f1, lf1, lf2);
+
+    lf1 = length (f1);
+
+    char *f3 = add (f1, f2, lf1);
+
+    if (f3 == NULL)
+
+    {
+
+        printf ("error in f3\n");
+
+        exit (EXIT_FAILURE);
+
+
+    }
+
+
+    free (f1);
+
+    free (f2);
+
+
+    f1 = NULL;
+
+    f2 = NULL;
+
+    int lf3 = length (f3);
+
+    removezero (f3);
+
+    removezero (bd);
+
+    lbd = length (bd);
+
+    if (lf3 > lbd)
+
+        reallocaddzerosl (&bd, lbd, lf3);
+
+    else if (lf3 < lbd)
+
+        reallocaddzerosl (&f3, lf3, lbd);
+
+    lf3 = length (f3);
+
+    f = add (f3, bd, lf3);
+
+    if (f == NULL)
+
+    {
+
+        printf ("error in f\n");
+
+        exit (EXIT_FAILURE);
+
+
+    }
+
+
+    removezero (f);
+
+    free (f3);
+
+
+    if (bd == NULL)
+
+    {
+
+        printf ("error in bd\n");
+
+        exit (EXIT_FAILURE);
+
+
+    }
+
+
+    free (bd);
+
+
+    f3 = NULL;
+
+    bd = NULL;
+
+
+    return f;
 
 }
